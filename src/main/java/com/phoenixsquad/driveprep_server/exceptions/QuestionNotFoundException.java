@@ -1,5 +1,5 @@
 package com.phoenixsquad.driveprep_server.exceptions;
 
-public class TrafficRuleNotFoundException {
+public class QuestionNotFoundException {
 
 }
