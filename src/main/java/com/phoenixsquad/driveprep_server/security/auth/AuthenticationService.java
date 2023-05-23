@@ -31,8 +31,12 @@ public class AuthenticationService {
         String email = request.getEmail();
         Optional<User> userOptional = userRepository.findByEmail(email);
         if(userOptional.isPresent()) {
-            System.out.println("User already exists.");
-            return ResponseEntity.badRequest().build();
+            String message = "User already exists.";
+            System.out.println(message);
+            RegistrationResponse response = new RegistrationResponse(message);
+            return ResponseEntity
+                    .badRequest()
+                    .body(response);
         }
 
         var user = User.builder()
@@ -45,7 +49,10 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
         userRepository.save(user);
-        return ResponseEntity.ok().build();
+
+        String message = "Registration successful!";
+        RegistrationResponse response = new RegistrationResponse(message);
+        return ResponseEntity.ok(response);
     }
 
     public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request) {
