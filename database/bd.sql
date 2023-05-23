@@ -16,8 +16,8 @@ CREATE TABLE Theme (
   FOREIGN KEY (category_id) REFERENCES Category (category_id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS "User";
-CREATE TABLE "User" (
+DROP TABLE IF EXISTS User_data;
+CREATE TABLE User_data (
   user_id VARCHAR(10) NOT NULL,
   user_surname VARCHAR(50) NOT NULL,
   user_name VARCHAR(50) NOT NULL,
