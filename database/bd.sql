@@ -22,7 +22,7 @@ CREATE TABLE User_data (
   user_surname VARCHAR(50) NOT NULL,
   user_name VARCHAR(50) NOT NULL,
   user_patronymic VARCHAR(50) NULL,
-  phone_number VARCHAR(13) NOT NULL,
+  user_email VARCHAR(320) NOT NULL,
   password VARCHAR(72) NOT NULL,
   category_id INT NOT NULL,
   PRIMARY KEY(user_id),
@@ -52,7 +52,7 @@ CREATE TABLE Solved_Question (
   correct BOOLEAN NOT NULL,
   PRIMARY KEY(question_id, user_id),
   FOREIGN KEY(question_id) REFERENCES Question (question_id) ON DELETE SET NULL ON UPDATE CASCADE,
-  FOREIGN KEY(user_id) REFERENCES "User" (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY(user_id) REFERENCES User_data (user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS Saved_Question;
@@ -61,7 +61,7 @@ CREATE TABLE Saved_Question (
   user_id VARCHAR(10) NOT NULL,
   PRIMARY KEY(question_id, user_id),
   FOREIGN KEY(question_id) REFERENCES Question (question_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY(user_id) REFERENCES "User" (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY(user_id) REFERENCES User_data (user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS Info_theme;
