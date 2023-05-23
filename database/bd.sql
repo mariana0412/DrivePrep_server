@@ -23,7 +23,7 @@ CREATE TABLE User_data (
   user_name VARCHAR(50) NOT NULL,
   user_patronymic VARCHAR(50) NULL,
   user_email VARCHAR(320) NOT NULL,
-  password VARCHAR(72) NOT NULL,
+  user_password VARCHAR(72) NOT NULL,
   category_id INT NOT NULL,
   PRIMARY KEY(user_id),
   FOREIGN KEY (category_id) REFERENCES Category (category_id) ON DELETE NO ACTION ON UPDATE CASCADE
