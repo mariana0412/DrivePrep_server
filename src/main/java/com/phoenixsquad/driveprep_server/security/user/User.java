@@ -36,14 +36,14 @@ public class User implements UserDetails {
     @Column(name = "user_patronymic")
     private String patronymic;
 
+    @Column(name = "category_id")
+    private Integer categoryId;
+
     @Column(name = "user_email")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "user_password")
     private String password;
-
-    @Column(name = "category_id")
-    private Integer categoryId;
 
 
     @Override
