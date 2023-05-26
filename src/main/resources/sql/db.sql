@@ -41,6 +41,7 @@ CREATE TABLE Question (
   var1 VARCHAR(450) NOT NULL,
   var2 VARCHAR(450) NULL,
   var3 VARCHAR(450) NULL,
+  complexity INT NOT NULL,
   PRIMARY KEY(question_id),
   FOREIGN KEY (theme_id) REFERENCES Theme (theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
