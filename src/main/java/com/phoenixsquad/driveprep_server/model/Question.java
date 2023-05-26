@@ -46,4 +46,7 @@ public class Question {
 
     @Column(name = "var3")
     private String var3;
+
+    @Column(name = "complexity")
+    private Integer complexity;
 }
