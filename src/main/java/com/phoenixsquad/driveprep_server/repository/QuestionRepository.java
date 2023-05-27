@@ -11,5 +11,8 @@ public interface QuestionRepository extends CrudRepository<Question, Integer>,
         PagingAndSortingRepository<Question, Integer> {
 
     @Query("SELECT q FROM Question q WHERE q.themeId = ?1")
-    List<Question> getQuestionsFromTheme(Integer themeId);
+    List<Question> getQuestionsByTheme(Integer themeId);
+
+    @Query("SELECT q FROM Question q WHERE q.themeId = ?1 AND q.complexity BETWEEN ?2 AND ?3")
+    List<Question> getQuestionsByThemeAndComplexity(Integer themeId, Integer minComplexity, Integer maxComplexity);
 }

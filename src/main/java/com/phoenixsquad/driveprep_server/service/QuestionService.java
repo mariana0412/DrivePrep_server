@@ -8,5 +8,6 @@ import java.util.List;
 @Service
 public interface QuestionService {
     List<Question> getAllQuestions();
-    List<Question> getAllQuestionsFromTheme(Integer themeId);
+    List<Question> getQuestionsByTheme(Integer themeId);
+    List<Question> getQuestionsByThemeAndComplexity(Integer themeId, Integer minComplexity, Integer maxComplexity);
 }

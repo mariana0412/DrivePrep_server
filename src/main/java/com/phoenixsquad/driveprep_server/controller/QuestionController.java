@@ -21,9 +21,15 @@ public class QuestionController {
     }
 
     @GetMapping(path = "/questions")
-    public ResponseEntity<List<Question>> listQuestions(@RequestParam(required = false) Integer themeId) {
-        if(themeId != null)
-            return new ResponseEntity<>(questionService.getAllQuestionsFromTheme(themeId), HttpStatus.OK);
+    public ResponseEntity<List<Question>> listQuestions(@RequestParam(required = false) Integer themeId,
+                                                        @RequestParam(required = false) Integer minComplexity,
+                                                        @RequestParam(required = false) Integer maxComplexity) {
+        if(themeId != null && minComplexity != null && maxComplexity != null) {
+            return new ResponseEntity<>(questionService.getQuestionsByThemeAndComplexity(themeId, minComplexity,
+                    maxComplexity), HttpStatus.OK);
+        } else if(themeId != null)
+            return new ResponseEntity<>(questionService.getQuestionsByTheme(themeId), HttpStatus.OK);
+
         return new ResponseEntity<>(questionService.getAllQuestions(), HttpStatus.OK);
     }
 

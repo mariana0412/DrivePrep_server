@@ -26,8 +26,13 @@ public class QuestionServiceImplementation implements QuestionService {
     }
 
     @Override
-    public List<Question> getAllQuestionsFromTheme(Integer themeId) {
-        return questionRepository.getQuestionsFromTheme(themeId);
+    public List<Question> getQuestionsByTheme(Integer themeId) {
+        return questionRepository.getQuestionsByTheme(themeId);
+    }
+
+    @Override
+    public List<Question> getQuestionsByThemeAndComplexity(Integer themeId, Integer minComplexity, Integer maxComplexity) {
+        return questionRepository.getQuestionsByThemeAndComplexity(themeId, minComplexity, maxComplexity);
     }
 
 }
