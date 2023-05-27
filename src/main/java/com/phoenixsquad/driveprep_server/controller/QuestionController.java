@@ -1,5 +1,6 @@
 package com.phoenixsquad.driveprep_server.controller;
 
+import com.phoenixsquad.driveprep_server.dto.QuestionDTO;
 import com.phoenixsquad.driveprep_server.model.Question.Question;
 import com.phoenixsquad.driveprep_server.service.QuestionService;
 import org.springframework.http.HttpStatus;
@@ -35,5 +36,10 @@ public class QuestionController {
         // TODO: consider case when list is empty
         return new ResponseEntity<>(questionService.getAllQuestions(), HttpStatus.OK);
     }
+
+    @GetMapping(path = "/incorrectly_questions")
+    public ResponseEntity<List<QuestionDTO>> listQuestions(String userId) {
+        return new ResponseEntity<>(questionService.getIncorrectlySolvedQuestionsByUserId(userId), HttpStatus.OK);
+    } // TODO: think about URLs and maybe send everything like DTO
 
 }
