@@ -19,9 +19,8 @@ public class Question {
     @Column(name = "question_id")
     private Integer id;
 
-    @ManyToOne
     @JoinColumn(name = "theme_id")
-    private Theme theme;
+    private Integer themeId;
 
     @Column(name = "text")
     private String text;
