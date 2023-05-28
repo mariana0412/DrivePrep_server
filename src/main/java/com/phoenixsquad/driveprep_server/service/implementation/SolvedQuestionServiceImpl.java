@@ -20,4 +20,10 @@ public class SolvedQuestionServiceImpl implements SolvedQuestionService {
         UserQuestionId id = new UserQuestionId(questionId, userId);
         return solvedQuestionRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void saveSolvedQuestion(SolvedQuestion solvedQuestion) {
+        solvedQuestionRepository.save(solvedQuestion);
+    }
+
 }
