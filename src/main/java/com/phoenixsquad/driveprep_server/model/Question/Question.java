@@ -29,7 +29,7 @@ public class Question {
     private String tips;
 
     @Column(name = "year")
-    private Date additionYear; // TODO: find out what type is the most appropriate for Year
+    private Date dateAdded;
 
     @Column(name = "picture")
     private String picturePath;

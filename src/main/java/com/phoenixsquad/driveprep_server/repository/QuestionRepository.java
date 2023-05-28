@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -25,4 +26,7 @@ public interface QuestionRepository extends CrudRepository<Question, Integer> {
             "INNER JOIN SolvedQuestion sq ON q.id = sq.id.questionId " +
             "WHERE sq.id.userId = ?1 AND sq.correct = false")
     List<Question> getIncorrectlySolvedQuestionsByUserId(String userId);
+
+    @Query("SELECT q FROM Question q WHERE q.dateAdded >= ?1")
+    List<Question> getQuestionsByDateAdded(Date dateAdded);
 }

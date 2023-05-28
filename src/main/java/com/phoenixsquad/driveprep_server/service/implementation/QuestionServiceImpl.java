@@ -5,6 +5,7 @@ import com.phoenixsquad.driveprep_server.repository.QuestionRepository;
 import com.phoenixsquad.driveprep_server.service.QuestionService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -33,5 +34,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> getQuestionsByThemeAndComplexity(Integer themeId, Integer minComplexity, Integer maxComplexity) {
         return questionRepository.getQuestionsByThemeAndComplexity(themeId, minComplexity, maxComplexity);
+    }
+
+    @Override
+    public List<Question> getQuestionsByDateAdded(Date dateAdded) {
+        return questionRepository.getQuestionsByDateAdded(dateAdded);
     }
 }

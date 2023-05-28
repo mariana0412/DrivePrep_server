@@ -11,6 +11,7 @@ import com.phoenixsquad.driveprep_server.service.SolvedQuestionService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -59,6 +60,12 @@ public class QuestionDTOServiceImpl implements QuestionDTOService {
         return mapQuestionsToDTO(questions, userId);
     }
 
+    @Override
+    public List<QuestionDTO> getQuestionsByDateAdded(Date dateAdded, String userId) {
+        List<Question> questions = questionService.getQuestionsByDateAdded(dateAdded);
+        return mapQuestionsToDTO(questions, userId);
+    }
+
     private List<QuestionDTO> mapQuestionsToDTO(List<Question> questions, String userId) {
         List<QuestionDTO> questionDTOs = new ArrayList<>();
         for (Question question : questions) {
@@ -67,7 +74,7 @@ public class QuestionDTOServiceImpl implements QuestionDTOService {
             questionDTO.setThemeId(question.getThemeId());
             questionDTO.setText(question.getText());
             questionDTO.setTips(question.getTips());
-            questionDTO.setAdditionYear(question.getAdditionYear());
+            questionDTO.setAdditionYear(question.getDateAdded());
             questionDTO.setPicturePath(question.getPicturePath());
             questionDTO.setAnswer(question.getAnswer());
             questionDTO.setVar1(question.getVar1());
