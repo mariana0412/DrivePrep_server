@@ -1,7 +1,7 @@
 package com.phoenixsquad.driveprep_server.controller;
 
 import com.phoenixsquad.driveprep_server.dto.QuestionDTO;
-import com.phoenixsquad.driveprep_server.model.Question.Question;
+import com.phoenixsquad.driveprep_server.model.Question;
 import com.phoenixsquad.driveprep_server.service.QuestionDTOService;
 import com.phoenixsquad.driveprep_server.service.QuestionService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -62,15 +62,12 @@ public class QuestionController {
             return questionService.getQuestionsByThemeAndComplexity(themeId, minComplexity, maxComplexity);
         else if (themeId != null)
             return questionService.getQuestionsByTheme(themeId);
-        else if(dateAdded != null) {
-            System.out.println("HEREEE");
+        else if(dateAdded != null)
             return questionService.getQuestionsByDateAdded(dateAdded);
-        }
-        System.out.println("tHEREEE");
         return questionService.getAllQuestions();
     }
 
-    @GetMapping(path = "/saved_questions")
+    @GetMapping(path = "/saved-questions")
     public ResponseEntity<List<QuestionDTO>> listSavedQuestions(String userId) {
         List<QuestionDTO> questionDTOs = questionDTOService.getSavedQuestionsByUserId(userId);
         if(questionDTOs.isEmpty())
@@ -79,7 +76,7 @@ public class QuestionController {
         return new ResponseEntity<>(questionDTOs, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/wrong_questions")
+    @GetMapping(path = "/wrong-questions")
     public ResponseEntity<List<QuestionDTO>> listWrongQuestions(String userId) {
         List<QuestionDTO> questionDTOs = questionDTOService.getIncorrectlySolvedQuestionsByUserId(userId);
         if(questionDTOs.isEmpty())

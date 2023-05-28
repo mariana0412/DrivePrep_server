@@ -1,6 +1,6 @@
 package com.phoenixsquad.driveprep_server.service.implementation;
 
-import com.phoenixsquad.driveprep_server.model.Question.Question;
+import com.phoenixsquad.driveprep_server.model.Question;
 import com.phoenixsquad.driveprep_server.repository.QuestionRepository;
 import com.phoenixsquad.driveprep_server.service.QuestionService;
 import org.springframework.stereotype.Service;

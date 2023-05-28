@@ -1,6 +1,6 @@
 package com.phoenixsquad.driveprep_server.service;
 
-import com.phoenixsquad.driveprep_server.model.Question.Question;
+import com.phoenixsquad.driveprep_server.model.Question;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

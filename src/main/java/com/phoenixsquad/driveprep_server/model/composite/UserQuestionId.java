@@ -1,4 +1,4 @@
-package com.phoenixsquad.driveprep_server.model.Question.SolvedQuestion;
+package com.phoenixsquad.driveprep_server.model.composite;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -12,11 +12,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-public class SolvedQuestionId implements Serializable {
+public class UserQuestionId implements Serializable {
     @Column(name = "question_id")
     private Integer questionId;
 
     @Column(name = "user_id")
     private String userId;
-    // TODO: make one ID for solved and saved or even parent for them (too much similarities)
 }

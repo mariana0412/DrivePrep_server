@@ -1,7 +1,7 @@
 package com.phoenixsquad.driveprep_server.service.implementation;
 
-import com.phoenixsquad.driveprep_server.model.Question.SolvedQuestion.SolvedQuestion;
-import com.phoenixsquad.driveprep_server.model.Question.SolvedQuestion.SolvedQuestionId;
+import com.phoenixsquad.driveprep_server.model.SolvedQuestion;
+import com.phoenixsquad.driveprep_server.model.composite.UserQuestionId;
 import com.phoenixsquad.driveprep_server.repository.SolvedQuestionRepository;
 import com.phoenixsquad.driveprep_server.service.SolvedQuestionService;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class SolvedQuestionServiceImpl implements SolvedQuestionService {
 
     @Override
     public SolvedQuestion findByUserIdAndQuestionId(String userId, Integer questionId) {
-        SolvedQuestionId id = new SolvedQuestionId(questionId, userId);
+        UserQuestionId id = new UserQuestionId(questionId, userId);
         return solvedQuestionRepository.findById(id).orElse(null);
     }
 }

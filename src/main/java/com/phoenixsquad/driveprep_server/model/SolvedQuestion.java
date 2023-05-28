@@ -1,5 +1,6 @@
-package com.phoenixsquad.driveprep_server.model.Question.SolvedQuestion;
+package com.phoenixsquad.driveprep_server.model;
 
+import com.phoenixsquad.driveprep_server.model.composite.UserQuestionId;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -17,6 +18,6 @@ import lombok.NoArgsConstructor;
 public class SolvedQuestion {
 
     @EmbeddedId
-    private SolvedQuestionId id;
+    private UserQuestionId id;
     private boolean correct;
 }

@@ -1,6 +1,6 @@
 package com.phoenixsquad.driveprep_server.repository;
 
-import com.phoenixsquad.driveprep_server.model.Question.Question;
+import com.phoenixsquad.driveprep_server.model.Question;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

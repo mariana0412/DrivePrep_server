@@ -1,5 +1,6 @@
-package com.phoenixsquad.driveprep_server.model.Question.SavedQuestion;
+package com.phoenixsquad.driveprep_server.model;
 
+import com.phoenixsquad.driveprep_server.model.composite.UserQuestionId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +16,6 @@ import lombok.NoArgsConstructor;
 public class SavedQuestion {
 
     @EmbeddedId
-    private SavedQuestionId id;
+    private UserQuestionId id;
 
 }

@@ -1,8 +1,8 @@
 package com.phoenixsquad.driveprep_server.service.implementation;
 
 import com.phoenixsquad.driveprep_server.dto.QuestionDTO;
-import com.phoenixsquad.driveprep_server.model.Question.Question;
-import com.phoenixsquad.driveprep_server.model.Question.SolvedQuestion.SolvedQuestion;
+import com.phoenixsquad.driveprep_server.model.Question;
+import com.phoenixsquad.driveprep_server.model.SolvedQuestion;
 import com.phoenixsquad.driveprep_server.repository.QuestionRepository;
 import com.phoenixsquad.driveprep_server.service.QuestionDTOService;
 import com.phoenixsquad.driveprep_server.service.QuestionService;
