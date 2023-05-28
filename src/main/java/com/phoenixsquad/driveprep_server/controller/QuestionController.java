@@ -2,6 +2,7 @@ package com.phoenixsquad.driveprep_server.controller;
 
 import com.phoenixsquad.driveprep_server.dto.QuestionDTO;
 import com.phoenixsquad.driveprep_server.model.Question.Question;
+import com.phoenixsquad.driveprep_server.service.QuestionDTOService;
 import com.phoenixsquad.driveprep_server.service.QuestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,31 +16,63 @@ import java.util.List;
 public class QuestionController {
 
     private final QuestionService questionService;
+    private final QuestionDTOService questionDTOService;
 
 
-    public QuestionController(QuestionService questionService) {
+    public QuestionController(QuestionService questionService, QuestionDTOService questionDTOService) {
         this.questionService = questionService;
+        this.questionDTOService = questionDTOService;
     }
 
     @GetMapping(path = "/questions")
-    public ResponseEntity<List<Question>> listQuestions(@RequestParam(required = false) Integer themeId,
-                                                        @RequestParam(required = false) Integer minComplexity,
-                                                        @RequestParam(required = false) Integer maxComplexity,
-                                                        @RequestParam(required = false) String userId) {
-        if(themeId != null && minComplexity != null && maxComplexity != null) {
-            return new ResponseEntity<>(questionService.getQuestionsByThemeAndComplexity(themeId, minComplexity,
-                    maxComplexity), HttpStatus.OK);
-        } else if(themeId != null)
-            return new ResponseEntity<>(questionService.getQuestionsByTheme(themeId), HttpStatus.OK);
-        else if(userId != null)
-            return new ResponseEntity<>(questionService.getSavedQuestionsByUserId(userId), HttpStatus.OK);
-        // TODO: consider case when list is empty
-        return new ResponseEntity<>(questionService.getAllQuestions(), HttpStatus.OK);
+    public ResponseEntity<List<?>> listQuestions(@RequestParam(required = false) Integer themeId,
+                                                 @RequestParam(required = false) Integer minComplexity,
+                                                 @RequestParam(required = false) Integer maxComplexity,
+                                                 @RequestParam(required = false) String userId) {
+        List<?> questions;
+        if(userId != null)
+            questions = getQuestionDTOs(themeId, minComplexity, maxComplexity, userId);
+        else
+            questions = getQuestions(themeId, minComplexity, maxComplexity);
+
+        if (questions.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/incorrectly_questions")
-    public ResponseEntity<List<QuestionDTO>> listQuestions(String userId) {
-        return new ResponseEntity<>(questionService.getIncorrectlySolvedQuestionsByUserId(userId), HttpStatus.OK);
-    } // TODO: think about URLs and maybe send everything like DTO
+    private List<QuestionDTO> getQuestionDTOs(Integer themeId, Integer minComplexity, Integer maxComplexity, String userId) {
+        if (themeId != null && minComplexity != null && maxComplexity != null)
+            return questionDTOService.getQuestionsByThemeAndComplexity(themeId, minComplexity, maxComplexity, userId);
+        else if (themeId != null)
+            return questionDTOService.getQuestionsByTheme(themeId, userId);
+        return questionDTOService.getAllQuestions(userId);
+    }
+
+    private List<Question> getQuestions(Integer themeId, Integer minComplexity, Integer maxComplexity) {
+        if (themeId != null && minComplexity != null && maxComplexity != null)
+            return questionService.getQuestionsByThemeAndComplexity(themeId, minComplexity, maxComplexity);
+        else if (themeId != null)
+            return questionService.getQuestionsByTheme(themeId);
+        return questionService.getAllQuestions();
+    }
+
+    @GetMapping(path = "/saved_questions")
+    public ResponseEntity<List<QuestionDTO>> listSavedQuestions(String userId) {
+        List<QuestionDTO> questionDTOs = questionDTOService.getSavedQuestionsByUserId(userId);
+        if(questionDTOs.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(questionDTOs, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/wrong_questions")
+    public ResponseEntity<List<QuestionDTO>> listWrongQuestions(String userId) {
+        List<QuestionDTO> questionDTOs = questionDTOService.getIncorrectlySolvedQuestionsByUserId(userId);
+        if(questionDTOs.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(questionDTOs, HttpStatus.OK);
+    }
 
 }

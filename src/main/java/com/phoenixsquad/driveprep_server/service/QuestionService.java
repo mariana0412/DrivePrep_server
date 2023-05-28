@@ -1,6 +1,5 @@
 package com.phoenixsquad.driveprep_server.service;
 
-import com.phoenixsquad.driveprep_server.dto.QuestionDTO;
 import com.phoenixsquad.driveprep_server.model.Question.Question;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +10,4 @@ public interface QuestionService {
     List<Question> getAllQuestions();
     List<Question> getQuestionsByTheme(Integer themeId);
     List<Question> getQuestionsByThemeAndComplexity(Integer themeId, Integer minComplexity, Integer maxComplexity);
-    List<Question> getSavedQuestionsByUserId(String userId);
-    List<QuestionDTO> getIncorrectlySolvedQuestionsByUserId(String userId);
 }
