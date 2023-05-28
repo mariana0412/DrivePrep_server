@@ -18,6 +18,15 @@ import lombok.NoArgsConstructor;
 public class Theme {
     @Id
     @Column(name = "theme_id")
-    private Long id;
+    private Integer id;
+
+    @Column(name = "theme_name")
+    private String name;
+
+    @Column(name = "theme_description")
+    private String description;
+
+    @Column(name = "category_id")
+    private Integer categoryId;
 
 }
