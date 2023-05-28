@@ -1,5 +1,6 @@
 package com.phoenixsquad.driveprep_server.security.user;
 
+import com.phoenixsquad.driveprep_server.exceptions.InvalidPasswordException;
 import com.phoenixsquad.driveprep_server.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class UserController {
     @GetMapping("/users/{id}")
     public ResponseEntity<UserDTO> getUserDataById(@PathVariable("id") String id) {
         try {
-            UserDTO user = userService.getUserById(id);
+            UserDTO user = userService.getUserDTOById(id);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -28,21 +29,36 @@ public class UserController {
     public ResponseEntity<String> updateUserData(@RequestBody UserDTO user) {
         try {
             userService.saveUser(user);
+            return ResponseEntity.ok("User date updated successfully");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Failed to update user data");
         }
-        return ResponseEntity.ok("User date updated successfully");
     }
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable("id") String id) {
         try {
             userService.deleteUser(id);
+            return ResponseEntity.ok("User deleted successfully");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Failed to delete user");
         }
-        return ResponseEntity.ok("User deleted successfully");
+    }
+
+    @PutMapping("/users/password")
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request) {
+        try {
+            userService.changePassword(request.getId(), request.getOldPassword(), request.getNewPassword());
+            return ResponseEntity.ok("Password changed successfully");
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (InvalidPasswordException e) {
+            return ResponseEntity.badRequest().body("Invalid old password");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to change password");
+        }
     }
 }

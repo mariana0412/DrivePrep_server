@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
-    UserDTO getUserById(String id);
+    UserDTO getUserDTOById(String id);
     void saveUser(UserDTO user);
     void deleteUser(String id);
+    void changePassword(String id, String oldPassword, String newPassword);
 }
