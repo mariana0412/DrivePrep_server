@@ -14,19 +14,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Theme")
-public class Theme {
+@Table(name = "Category")
+public class Category {
+
     @Id
-    @Column(name = "theme_id")
+    @Column(name = "category_id")
     private Integer id;
 
-    @Column(name = "theme_name")
+    @Column(name = "category_name")
     private String name;
 
-    @Column(name = "theme_description")
+    @Column(name = "category_description")
     private String description;
-
-    @Column(name = "category_id")
-    private Integer categoryId;
-
 }
