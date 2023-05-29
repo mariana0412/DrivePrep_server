@@ -8,11 +8,9 @@ import java.util.List;
 
 @Service
 public interface QuestionDTOService {
-    List<QuestionDTO> getAllQuestions(String userId);
-    List<QuestionDTO> getQuestionsByTheme(Integer themeId, String userId);
-    List<QuestionDTO> getQuestionsByThemeAndComplexity(Integer themeId, Integer minComplexity, Integer maxComplexity,
-                                                       String userId);
+
     List<QuestionDTO> getSavedQuestionsByUserId(String userId);
     List<QuestionDTO> getIncorrectlySolvedQuestionsByUserId(String userId);
-    List<QuestionDTO> getQuestionsByDateAdded(Date dateAdded, String userId);
+    List<QuestionDTO> getQuestions(Integer themeId, Integer minComplexity, Integer maxComplexity,
+                                   Date dateAdded, String userId);
 }
