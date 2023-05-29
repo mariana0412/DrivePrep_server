@@ -31,24 +31,6 @@ public class QuestionDTOServiceImpl implements QuestionDTOService {
     }
 
     @Override
-    public List<QuestionDTO> getAllQuestions(String userId) {
-        List<Question> questions = questionService.getAllQuestions();
-        return mapQuestionsToDTO(questions, userId);
-    }
-
-    @Override
-    public List<QuestionDTO> getQuestionsByTheme(Integer themeId, String userId) {
-        List<Question> questions = questionService.getQuestionsByTheme(themeId);
-        return mapQuestionsToDTO(questions, userId);
-    }
-
-    @Override
-    public List<QuestionDTO> getQuestionsByThemeAndComplexity(Integer themeId, Integer minComplexity, Integer maxComplexity, String userId) {
-        List<Question> questions = questionService.getQuestionsByThemeAndComplexity(themeId, minComplexity, maxComplexity);
-        return mapQuestionsToDTO(questions, userId);
-    }
-
-    @Override
     public List<QuestionDTO> getSavedQuestionsByUserId(String userId) {
         List<Question> questions = questionRepository.getSavedQuestionsByUserId(userId);
         return mapQuestionsToDTO(questions, userId);
@@ -61,8 +43,9 @@ public class QuestionDTOServiceImpl implements QuestionDTOService {
     }
 
     @Override
-    public List<QuestionDTO> getQuestionsByThemeAndDateAdded(Integer themeId, Date dateAdded, String userId) {
-        List<Question> questions = questionService.getQuestionsByThemeAndDateAdded(themeId, dateAdded);
+    public List<QuestionDTO> getQuestions(Integer themeId, Integer minComplexity, Integer maxComplexity, Date dateAdded,
+                                          String userId) {
+        List<Question> questions = questionService.getQuestions(themeId, minComplexity, maxComplexity, dateAdded);
         return mapQuestionsToDTO(questions, userId);
     }
 
