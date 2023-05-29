@@ -1,8 +1,8 @@
 package com.phoenixsquad.driveprep_server.security.config;
 
 import com.phoenixsquad.driveprep_server.exceptions.UserNotFoundException;
-import com.phoenixsquad.driveprep_server.security.user.User;
-import com.phoenixsquad.driveprep_server.security.user.UserRepository;
+import com.phoenixsquad.driveprep_server.model.User;
+import com.phoenixsquad.driveprep_server.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

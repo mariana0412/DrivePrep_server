@@ -1,4 +1,4 @@
-package com.phoenixsquad.driveprep_server.security.user;
+package com.phoenixsquad.driveprep_server.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

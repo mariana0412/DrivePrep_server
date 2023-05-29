@@ -1,4 +1,4 @@
-package com.phoenixsquad.driveprep_server.security.user;
+package com.phoenixsquad.driveprep_server.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

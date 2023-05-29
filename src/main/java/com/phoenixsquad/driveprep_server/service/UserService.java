@@ -1,5 +1,6 @@
-package com.phoenixsquad.driveprep_server.security.user;
+package com.phoenixsquad.driveprep_server.service;
 
+import com.phoenixsquad.driveprep_server.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
 @Service

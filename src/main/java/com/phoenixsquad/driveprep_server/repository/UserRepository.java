@@ -1,5 +1,6 @@
-package com.phoenixsquad.driveprep_server.security.user;
+package com.phoenixsquad.driveprep_server.repository;
 
+import com.phoenixsquad.driveprep_server.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

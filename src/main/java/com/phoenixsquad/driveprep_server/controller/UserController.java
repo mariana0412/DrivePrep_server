@@ -1,7 +1,10 @@
-package com.phoenixsquad.driveprep_server.security.user;
+package com.phoenixsquad.driveprep_server.controller;
 
 import com.phoenixsquad.driveprep_server.exceptions.InvalidPasswordException;
 import com.phoenixsquad.driveprep_server.exceptions.UserNotFoundException;
+import com.phoenixsquad.driveprep_server.dto.ChangePasswordRequest;
+import com.phoenixsquad.driveprep_server.dto.UserDTO;
+import com.phoenixsquad.driveprep_server.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

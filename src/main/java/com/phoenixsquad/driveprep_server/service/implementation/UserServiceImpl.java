@@ -1,7 +1,11 @@
-package com.phoenixsquad.driveprep_server.security.user;
+package com.phoenixsquad.driveprep_server.service.implementation;
 
+import com.phoenixsquad.driveprep_server.dto.UserDTO;
 import com.phoenixsquad.driveprep_server.exceptions.InvalidPasswordException;
 import com.phoenixsquad.driveprep_server.exceptions.UserNotFoundException;
+import com.phoenixsquad.driveprep_server.model.User;
+import com.phoenixsquad.driveprep_server.repository.UserRepository;
+import com.phoenixsquad.driveprep_server.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +51,6 @@ public class UserServiceImpl implements UserService {
         user.setCategoryId(userDTO.getCategoryId());
         user.setEmail(userDTO.getEmail());
 
-        System.out.println(user);
         userRepository.save(user);
     }
 

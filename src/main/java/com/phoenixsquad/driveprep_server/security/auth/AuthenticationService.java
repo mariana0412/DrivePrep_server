@@ -6,8 +6,8 @@ import com.phoenixsquad.driveprep_server.security.auth.request.RegistrationReque
 import com.phoenixsquad.driveprep_server.security.auth.response.AuthenticationResponse;
 import com.phoenixsquad.driveprep_server.security.auth.response.RegistrationResponse;
 import com.phoenixsquad.driveprep_server.security.config.JwtService;
-import com.phoenixsquad.driveprep_server.security.user.User;
-import com.phoenixsquad.driveprep_server.security.user.UserRepository;
+import com.phoenixsquad.driveprep_server.model.User;
+import com.phoenixsquad.driveprep_server.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
