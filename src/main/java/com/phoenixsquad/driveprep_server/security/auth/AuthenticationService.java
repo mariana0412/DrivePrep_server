@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -38,9 +39,10 @@ public class AuthenticationService {
                     .badRequest()
                     .body(response);
         }
+        String userId = generateUserId();
 
         var user = User.builder()
-                .id(request.getId())
+                .id(userId)
                 .surname(request.getSurname())
                 .name(request.getName())
                 .patronymic(request.getPatronymic())
@@ -53,6 +55,10 @@ public class AuthenticationService {
         String message = "Registration successful!";
         RegistrationResponse response = new RegistrationResponse(message);
         return ResponseEntity.ok(response);
+    }
+
+    private String generateUserId() {
+        return UUID.randomUUID().toString().substring(0, 10);
     }
 
     public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request) {
