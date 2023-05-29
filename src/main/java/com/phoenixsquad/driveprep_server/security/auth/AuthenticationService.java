@@ -6,8 +6,8 @@ import com.phoenixsquad.driveprep_server.security.auth.request.RegistrationReque
 import com.phoenixsquad.driveprep_server.security.auth.response.AuthenticationResponse;
 import com.phoenixsquad.driveprep_server.security.auth.response.RegistrationResponse;
 import com.phoenixsquad.driveprep_server.security.config.JwtService;
-import com.phoenixsquad.driveprep_server.security.user.User;
-import com.phoenixsquad.driveprep_server.security.user.UserRepository;
+import com.phoenixsquad.driveprep_server.model.User;
+import com.phoenixsquad.driveprep_server.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -38,9 +39,10 @@ public class AuthenticationService {
                     .badRequest()
                     .body(response);
         }
+        String userId = generateUserId();
 
         var user = User.builder()
-                .id(request.getId())
+                .id(userId)
                 .surname(request.getSurname())
                 .name(request.getName())
                 .patronymic(request.getPatronymic())
@@ -53,6 +55,10 @@ public class AuthenticationService {
         String message = "Registration successful!";
         RegistrationResponse response = new RegistrationResponse(message);
         return ResponseEntity.ok(response);
+    }
+
+    private String generateUserId() {
+        return UUID.randomUUID().toString().substring(0, 10);
     }
 
     public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request) {

@@ -1,4 +1,4 @@
-package com.phoenixsquad.driveprep_server.security.auth.request;
+package com.phoenixsquad.driveprep_server.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,14 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegistrationRequest {
+@Builder
+public class UserDTO {
+    private String id;
     private String surname;
     private String name;
     private String patronymic;
     private Integer categoryId;
     private String email;
-    String password;
 }

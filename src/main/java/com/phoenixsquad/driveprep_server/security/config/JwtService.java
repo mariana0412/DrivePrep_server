@@ -1,6 +1,6 @@
 package com.phoenixsquad.driveprep_server.security.config;
 
-import com.phoenixsquad.driveprep_server.security.user.User;
+import com.phoenixsquad.driveprep_server.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
