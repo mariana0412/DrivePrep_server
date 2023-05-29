@@ -61,8 +61,8 @@ public class QuestionDTOServiceImpl implements QuestionDTOService {
     }
 
     @Override
-    public List<QuestionDTO> getQuestionsByDateAdded(Date dateAdded, String userId) {
-        List<Question> questions = questionService.getQuestionsByDateAdded(dateAdded);
+    public List<QuestionDTO> getQuestionsByThemeAndDateAdded(Integer themeId, Date dateAdded, String userId) {
+        List<Question> questions = questionService.getQuestionsByThemeAndDateAdded(themeId, dateAdded);
         return mapQuestionsToDTO(questions, userId);
     }
 

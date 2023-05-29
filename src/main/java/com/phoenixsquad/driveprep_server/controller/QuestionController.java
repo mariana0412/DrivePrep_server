@@ -50,20 +50,20 @@ public class QuestionController {
                                               Date dateAdded, String userId) {
         if (themeId != null && minComplexity != null && maxComplexity != null)
             return questionDTOService.getQuestionsByThemeAndComplexity(themeId, minComplexity, maxComplexity, userId);
-        else if (themeId != null)
+        else if (themeId != null && dateAdded != null)
+            return questionDTOService.getQuestionsByThemeAndDateAdded(themeId, dateAdded, userId);
+        else if(themeId != null)
             return questionDTOService.getQuestionsByTheme(themeId, userId);
-        else if(dateAdded != null)
-            return questionDTOService.getQuestionsByDateAdded(dateAdded, userId);
         return questionDTOService.getAllQuestions(userId);
     }
 
     private List<Question> getQuestions(Integer themeId, Integer minComplexity, Integer maxComplexity, Date dateAdded) {
         if (themeId != null && minComplexity != null && maxComplexity != null)
             return questionService.getQuestionsByThemeAndComplexity(themeId, minComplexity, maxComplexity);
-        else if (themeId != null)
+        else if (themeId != null && dateAdded != null)
+            return questionService.getQuestionsByThemeAndDateAdded(themeId, dateAdded);
+        else if(themeId != null)
             return questionService.getQuestionsByTheme(themeId);
-        else if(dateAdded != null)
-            return questionService.getQuestionsByDateAdded(dateAdded);
         return questionService.getAllQuestions();
     }
 

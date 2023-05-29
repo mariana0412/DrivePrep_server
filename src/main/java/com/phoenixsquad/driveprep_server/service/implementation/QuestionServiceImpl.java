@@ -37,7 +37,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getQuestionsByDateAdded(Date dateAdded) {
-        return questionRepository.getQuestionsByDateAdded(dateAdded);
+    public List<Question> getQuestionsByThemeAndDateAdded(Integer themeId, Date dateAdded) {
+        return questionRepository.getQuestionsByThemeAndDateAdded(themeId, dateAdded);
     }
 }
