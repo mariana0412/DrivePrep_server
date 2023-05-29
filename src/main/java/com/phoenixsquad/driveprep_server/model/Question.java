@@ -19,9 +19,8 @@ public class Question {
     @Column(name = "question_id")
     private Integer id;
 
-    @ManyToOne
     @JoinColumn(name = "theme_id")
-    private Theme theme;
+    private Integer themeId;
 
     @Column(name = "text")
     private String text;
@@ -30,7 +29,7 @@ public class Question {
     private String tips;
 
     @Column(name = "year")
-    private Date additionYear; // TODO: find out what type is the most appropriate for Year
+    private Date dateAdded;
 
     @Column(name = "picture")
     private String picturePath;
