@@ -5,6 +5,7 @@ import com.phoenixsquad.driveprep_server.service.ThemeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class ThemeController {
     }
 
     @GetMapping(path = "/themes")
-    public ResponseEntity<List<Theme>> listThemes() {
-        List<Theme> themes = themeService.getAllThemes();
+    public ResponseEntity<List<Theme>> listThemes(@RequestParam Integer categoryId) {
+        List<Theme> themes = themeService.getThemesByCategory(categoryId);
         if(themes.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

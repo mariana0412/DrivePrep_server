@@ -6,8 +6,6 @@ import com.phoenixsquad.driveprep_server.service.ThemeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class ThemeServiceImpl implements ThemeService {
@@ -19,9 +17,7 @@ public class ThemeServiceImpl implements ThemeService {
     }
 
     @Override
-    public List<Theme> getAllThemes() {
-        Iterable<Theme> themes = themeRepository.findAll();
-        return StreamSupport.stream(themes.spliterator(), false)
-                .collect(Collectors.toList());
+    public List<Theme> getThemesByCategory(Integer categoryId) {
+        return themeRepository.getThemesByCategoryId(categoryId);
     }
 }
