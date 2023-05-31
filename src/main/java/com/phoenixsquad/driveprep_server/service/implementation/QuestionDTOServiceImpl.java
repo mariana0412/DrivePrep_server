@@ -43,9 +43,9 @@ public class QuestionDTOServiceImpl implements QuestionDTOService {
     }
 
     @Override
-    public List<QuestionDTO> getQuestions(Integer themeId, Integer minComplexity, Integer maxComplexity, Date dateAdded,
+    public List<QuestionDTO> getQuestions(Integer categoryId, Integer complexityLevel, Integer themeId, Date dateAdded,
                                           String userId) {
-        List<Question> questions = questionService.getQuestions(themeId, minComplexity, maxComplexity, dateAdded);
+        List<Question> questions = questionService.getQuestions(categoryId, complexityLevel, themeId, dateAdded);
         return mapQuestionsToDTO(questions, userId);
     }
 

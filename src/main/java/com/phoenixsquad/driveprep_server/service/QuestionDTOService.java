@@ -11,6 +11,6 @@ public interface QuestionDTOService {
 
     List<QuestionDTO> getSavedQuestionsByUserId(String userId);
     List<QuestionDTO> getIncorrectlySolvedQuestionsByUserId(String userId);
-    List<QuestionDTO> getQuestions(Integer themeId, Integer minComplexity, Integer maxComplexity,
-                                   Date dateAdded, String userId);
+    List<QuestionDTO> getQuestions(Integer categoryId, Integer complexityLevel, Integer themeId, Date dateAdded,
+                                   String userId);
 }

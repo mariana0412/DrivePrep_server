@@ -8,11 +8,17 @@ import java.util.List;
 
 @Service
 public interface QuestionService {
-    List<Question> getQuestions(Integer themeId, Integer minComplexity, Integer maxComplexity, Date dateAdded);
+    List<Question> getQuestions(Integer categoryId, Integer complexityLevel, Integer themeId, Date dateAdded);
     List<Question> getAllQuestions();
+    List<Question> getQuestionsByCategory(Integer categoryId);
+    List<Question> getQuestionsByCategoryAndComplexity(Integer categoryId, Integer complexityLevel);
+    List<Question> getQuestionsByCategoryAndDateAdded(Integer categoryId, Date dateAdded);
+    List<Question> getQuestionsByCategoryAndComplexityAndDateAdded(Integer categoryId, Integer complexityLevel,
+                                                                   Date dateAdded);
+
     List<Question> getQuestionsByTheme(Integer themeId);
-    List<Question> getQuestionsByThemeAndComplexity(Integer themeId, Integer minComplexity, Integer maxComplexity);
+    List<Question> getQuestionsByThemeAndComplexity(Integer themeId, Integer complexityLevel);
     List<Question> getQuestionsByThemeAndDateAdded(Integer themeId, Date dateAdded);
-    List<Question> getQuestionsByThemeAndComplexityAndDateAdded(Integer themeId, Integer minComplexity,
-                                                                Integer maxComplexity, Date dateAdded);
+    List<Question> getQuestionsByThemeAndComplexityAndDateAdded(Integer themeId, Integer complexityLevel,
+                                                                Date dateAdded);
 }

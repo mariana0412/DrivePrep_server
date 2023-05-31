@@ -27,15 +27,15 @@ public class QuestionController {
 
     @GetMapping(path = "/questions")
     public ResponseEntity<List<?>> listQuestions(
+            @RequestParam(required = false) Integer categoryId,
+            @RequestParam(required = false) Integer complexityLevel,
             @RequestParam(required = false) Integer themeId,
-            @RequestParam(required = false) Integer minComplexity,
-            @RequestParam(required = false) Integer maxComplexity,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateAdded,
             @RequestParam(required = false) String userId
     ) {
         List<?> questions = userId != null
-                ? questionDTOService.getQuestions(themeId, minComplexity, maxComplexity, dateAdded, userId)
-                : questionService.getQuestions(themeId, minComplexity, maxComplexity, dateAdded);
+                ? questionDTOService.getQuestions(categoryId, complexityLevel, themeId, dateAdded, userId)
+                : questionService.getQuestions(categoryId, complexityLevel, themeId, dateAdded);
 
         if (questions.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
