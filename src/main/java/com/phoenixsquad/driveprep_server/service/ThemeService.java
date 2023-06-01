@@ -7,5 +7,5 @@ import java.util.List;
 
 @Service
 public interface ThemeService {
-    List<Theme> getAllThemes();
+    List<Theme> getThemesByCategory(Integer categoryId);
 }
