@@ -29,5 +29,5 @@ public class Sign {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "info_theme_id", nullable = false)
-    private InfoTheme infoTheme;
+    private Infotheme infotheme;
 }

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "Info_theme")
-public class InfoTheme {
+public class Infotheme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "info_theme_id", nullable = false)
@@ -20,7 +20,7 @@ public class InfoTheme {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_theme_id", nullable = false)
-    private InfoTheme parentInfoTheme;
+    private Infotheme parentInfoTheme;
 
     @Column(name = "info_theme_name", length = 70, nullable = false)
     private String name;
