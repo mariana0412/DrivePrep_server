@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -22,9 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAllCategories() {
-        Iterable<Category> categories = categoryRepository.findAll();
-        return StreamSupport.stream(categories.spliterator(), false)
-                .collect(Collectors.toList());
+        return categoryRepository.getAllCategories();
     }
 
     @Override
