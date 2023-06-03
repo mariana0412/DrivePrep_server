@@ -15,7 +15,8 @@ public interface QuestionService {
     List<Question> getQuestionsByCategoryAndDateAdded(Integer categoryId, Date dateAdded);
     List<Question> getQuestionsByCategoryAndComplexityAndDateAdded(Integer categoryId, Integer complexityLevel,
                                                                    Date dateAdded);
-
+    List<Question> getExamQuestionsByCategory(Integer categoryId);
+    List<Question> getExamQuestionsByCategoryAndComplexity(Integer categoryId, Integer complexityLevel);
     List<Question> getQuestionsByTheme(Integer themeId);
     List<Question> getQuestionsByThemeAndComplexity(Integer themeId, Integer complexityLevel);
     List<Question> getQuestionsByThemeAndDateAdded(Integer themeId, Date dateAdded);

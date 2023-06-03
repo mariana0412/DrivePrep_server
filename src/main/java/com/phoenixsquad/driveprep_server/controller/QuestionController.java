@@ -1,6 +1,7 @@
 package com.phoenixsquad.driveprep_server.controller;
 
 import com.phoenixsquad.driveprep_server.dto.QuestionDTO;
+import com.phoenixsquad.driveprep_server.model.Question;
 import com.phoenixsquad.driveprep_server.service.QuestionDTOService;
 import com.phoenixsquad.driveprep_server.service.QuestionService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -43,8 +44,25 @@ public class QuestionController {
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/exam-questions")
+    public ResponseEntity<List<Question>> listQuestions(
+            @RequestParam Integer categoryId,
+            @RequestParam(required = false) Integer complexityLevel
+    ) {
+        List<Question> examQuestions;
+        if(complexityLevel != null)
+            examQuestions = questionService.getExamQuestionsByCategoryAndComplexity(categoryId, complexityLevel);
+        else
+            examQuestions = questionService.getExamQuestionsByCategory(categoryId);
+
+        if (examQuestions.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(examQuestions, HttpStatus.OK);
+    }
+
     @GetMapping(path = "/saved-questions")
-    public ResponseEntity<List<QuestionDTO>> listSavedQuestions(String userId) {
+    public ResponseEntity<List<QuestionDTO>> listSavedQuestions(@RequestParam String userId) {
         List<QuestionDTO> questionDTOs = questionDTOService.getSavedQuestionsByUserId(userId);
         if(questionDTOs.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -53,7 +71,7 @@ public class QuestionController {
     }
 
     @GetMapping(path = "/wrong-questions")
-    public ResponseEntity<List<QuestionDTO>> listWrongQuestions(String userId) {
+    public ResponseEntity<List<QuestionDTO>> listWrongQuestions(@RequestParam String userId) {
         List<QuestionDTO> questionDTOs = questionDTOService.getIncorrectlySolvedQuestionsByUserId(userId);
         if(questionDTOs.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

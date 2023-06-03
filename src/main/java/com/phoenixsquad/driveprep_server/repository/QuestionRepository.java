@@ -14,31 +14,49 @@ public interface QuestionRepository extends CrudRepository<Question, Integer> {
     @Query("SELECT q FROM Question q " +
             "JOIN Theme t ON q.themeId = t.id " +
             "JOIN Category c ON t.categoryId = c.id " +
-            "WHERE c.id = ?1")
+            "WHERE c.id = ?1 OR c.id = 0")
     List<Question> getQuestionsByCategory(Integer categoryId);
 
     @Query("SELECT q FROM Question q " +
             "JOIN Theme t ON q.themeId = t.id " +
             "JOIN Category c ON t.categoryId = c.id " +
-            "WHERE c.id = ?1 " +
+            "WHERE c.id = ?1 OR c.id = 0 " +
             "AND q.complexity BETWEEN ?2 AND ?3")
     List<Question> getQuestionsByCategoryAndComplexity(Integer categoryId, Integer minComplexity, Integer maxComplexity);
 
     @Query("SELECT q FROM Question q " +
             "JOIN Theme t ON q.themeId = t.id " +
             "JOIN Category c ON t.categoryId = c.id " +
-            "WHERE c.id = ?1 " +
+            "WHERE c.id = ?1 OR c.id = 0 " +
             "AND q.dateAdded >= ?2")
     List<Question> getQuestionsByCategoryAndDateAdded(Integer categoryId, Date dateAdded);
 
     @Query("SELECT q FROM Question q " +
             "JOIN Theme t ON q.themeId = t.id " +
             "JOIN Category c ON t.categoryId = c.id " +
-            "WHERE c.id = ?1 " +
+            "WHERE c.id = ?1 OR c.id = 0 " +
             "AND q.complexity BETWEEN ?2 AND ?3 " +
             "AND q.dateAdded >= ?4")
     List<Question> getQuestionsByCategoryAndComplexityAndDateAdded(Integer categoryId, Integer minComplexity,
                                                                    Integer maxComplexity, Date dateAdded);
+
+    @Query("SELECT q FROM Question q " +
+            "JOIN Theme t ON q.themeId = t.id " +
+            "JOIN Category c ON t.categoryId = c.id " +
+            "WHERE c.id = ?1 OR c.id = 0 " +
+            "ORDER BY RANDOM() " +
+            "LIMIT 20")
+    List<Question> getExamQuestionsByCategory(Integer categoryId);
+
+    @Query("SELECT q FROM Question q " +
+            "JOIN Theme t ON q.themeId = t.id " +
+            "JOIN Category c ON t.categoryId = c.id " +
+            "WHERE c.id = ?1 OR c.id = 0 " +
+            "AND q.complexity BETWEEN ?2 AND ?3 " +
+            "ORDER BY RANDOM() " +
+            "LIMIT 20")
+    List<Question> getExamQuestionsByCategoryAndComplexity(Integer categoryId, Integer minComplexity,
+                                                           Integer maxComplexity);
 
     @Query("SELECT q FROM Question q " +
             "WHERE q.themeId = ?1")
