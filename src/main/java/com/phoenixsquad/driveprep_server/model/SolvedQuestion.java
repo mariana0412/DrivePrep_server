@@ -1,6 +1,7 @@
 package com.phoenixsquad.driveprep_server.model;
 
 import com.phoenixsquad.driveprep_server.model.composite.UserQuestionId;
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -19,5 +20,10 @@ public class SolvedQuestion {
 
     @EmbeddedId
     private UserQuestionId id;
-    private boolean correct;
+    @Column(name = "correct")
+    private Boolean correct;
+
+    public Boolean isCorrect() {
+        return correct;
+    }
 }

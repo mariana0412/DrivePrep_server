@@ -69,7 +69,7 @@ public class QuestionDTOServiceImpl implements QuestionDTOService {
             if(solvedQuestion != null)
                 questionDTO.setSolved(solvedQuestion.isCorrect());
 
-            boolean saved = savedQuestionService.findByUserIdAndQuestionId(userId, question.getId()) != null;
+            Boolean saved = savedQuestionService.findByUserIdAndQuestionId(userId, question.getId()) != null;
             questionDTO.setSaved(saved);
 
             questionDTOs.add(questionDTO);
