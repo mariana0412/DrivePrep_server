@@ -23,6 +23,6 @@ public class QuestionDTO {
     private String var2;
     private String var3;
     private Integer complexity;
-    private boolean solved;
-    private boolean saved;
+    private Boolean solved;
+    private Boolean saved;
 }
