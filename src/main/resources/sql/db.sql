@@ -74,16 +74,6 @@ CREATE TABLE Info_theme (
   FOREIGN KEY(parent_theme_id) REFERENCES Info_theme (info_theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS Fine;
-CREATE TABLE Fine (
-  fine_id VARCHAR(20) NOT NULL,
-  info_theme_id INT NOT NULL,
-  fine_text VARCHAR (1250) NOT NULL,
-  fine_sum INT NOT NULL,
-  PRIMARY KEY(fine_id),
-  FOREIGN KEY(info_theme_id) REFERENCES Info_theme (info_theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
-);
-
 DROP TABLE IF EXISTS Rule;
 CREATE TABLE Rule (
   rule_id VARCHAR(20) NOT NULL,
@@ -113,18 +103,5 @@ CREATE TABLE Law (
   law_text VARCHAR (1300) NULL,
   law_url VARCHAR (160) NOT NULL,
   PRIMARY KEY(law_id),
-  FOREIGN KEY(info_theme_id) REFERENCES Info_theme (info_theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
-);
-
-DROP TABLE IF EXISTS Additionals;
-CREATE TABLE Additionals (
-  add_id SERIAL NOT NULL,
-  info_theme_id INT NOT NULL,
-  add_text VARCHAR (1300) NULL,
-  add_url_text VARCHAR (260) NULL,
-  add_url_general VARCHAR (255) NULL,
-  add_url_video VARCHAR (255) NULL,
-  add_url_picture VARCHAR (255) NULL,
-  PRIMARY KEY(add_id),
   FOREIGN KEY(info_theme_id) REFERENCES Info_theme (info_theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
