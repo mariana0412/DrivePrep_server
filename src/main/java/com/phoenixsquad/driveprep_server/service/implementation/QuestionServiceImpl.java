@@ -124,10 +124,10 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     enum ComplexityLevel {
-        LEVEL_1(0, 25),
-        LEVEL_2(26, 50),
-        LEVEL_3(51, 75),
-        LEVEL_4(76, 100);
+        LEVEL_1(1, 15),
+        LEVEL_2(16, 30),
+        LEVEL_3(31, 50),
+        LEVEL_4(51, 100);
 
         private final int minComplexity;
         private final int maxComplexity;
