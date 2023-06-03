@@ -70,6 +70,7 @@ public class AuthenticationService {
                     )
             );
         } catch (AuthenticationException e) {
+            e.printStackTrace();
             System.out.println("Authentication failed.");
             return ResponseEntity.badRequest().build();
         }
