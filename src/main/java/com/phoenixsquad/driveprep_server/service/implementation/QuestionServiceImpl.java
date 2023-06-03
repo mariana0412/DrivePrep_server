@@ -91,6 +91,20 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<Question> getExamQuestionsByCategory(Integer categoryId) {
+        return questionRepository.getExamQuestionsByCategory(categoryId);
+    }
+
+    @Override
+    public List<Question> getExamQuestionsByCategoryAndComplexity(Integer categoryId, Integer complexityLevel) {
+        ComplexityLevel level = ComplexityLevel.values()[complexityLevel - 1];
+        int minComplexity = level.getMinComplexity();
+        int maxComplexity = level.getMaxComplexity();
+
+        return questionRepository.getExamQuestionsByCategoryAndComplexity(categoryId, minComplexity, maxComplexity);
+    }
+
+    @Override
     public List<Question> getQuestionsByTheme(Integer themeId) {
         return questionRepository.getQuestionsByTheme(themeId);
     }
