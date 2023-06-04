@@ -27,7 +27,7 @@ public class Sign {
     @Column(name = "sign_picture", length = 160, nullable = false)
     private String picturePath;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "info_theme_id", nullable = false)
     private Infotheme infotheme;
 }
