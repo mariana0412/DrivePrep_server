@@ -1,7 +1,7 @@
 package com.phoenixsquad.driveprep_server.controller;
 
-import com.phoenixsquad.driveprep_server.model.info.Infotheme;
-import com.phoenixsquad.driveprep_server.model.info.Sign;
+import com.phoenixsquad.driveprep_server.model.Infotheme;
+import com.phoenixsquad.driveprep_server.model.Sign;
 import com.phoenixsquad.driveprep_server.service.InfothemeService;
 import com.phoenixsquad.driveprep_server.service.SignService;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class SignController {
     }
 
     @GetMapping(path = "/signs-infothemes")
-    public ResponseEntity<List<?>> listSignInfothemes() {
+    public ResponseEntity<List<Infotheme>> listSignInfothemes() {
         List<Infotheme> infothemes = infothemeService.getSignInfothemes();
         if (infothemes.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
