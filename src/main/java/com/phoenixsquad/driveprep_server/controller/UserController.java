@@ -2,7 +2,7 @@ package com.phoenixsquad.driveprep_server.controller;
 
 import com.phoenixsquad.driveprep_server.exceptions.InvalidPasswordException;
 import com.phoenixsquad.driveprep_server.exceptions.UserNotFoundException;
-import com.phoenixsquad.driveprep_server.dto.ChangePasswordRequest;
+import com.phoenixsquad.driveprep_server.dto.ChangePasswordDTO;
 import com.phoenixsquad.driveprep_server.dto.UserDTO;
 import com.phoenixsquad.driveprep_server.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @PutMapping("/users/password")
-    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request) {
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDTO request) {
         try {
             userService.changePassword(request.getId(), request.getOldPassword(), request.getNewPassword());
             return ResponseEntity.ok("Password changed successfully");

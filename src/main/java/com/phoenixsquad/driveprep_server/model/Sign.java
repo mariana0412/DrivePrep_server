@@ -1,4 +1,4 @@
-package com.phoenixsquad.driveprep_server.model.info;
+package com.phoenixsquad.driveprep_server.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

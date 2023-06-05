@@ -1,6 +1,6 @@
-package com.phoenixsquad.driveprep_server.repository.info;
+package com.phoenixsquad.driveprep_server.repository;
 
-import com.phoenixsquad.driveprep_server.model.info.Sign;
+import com.phoenixsquad.driveprep_server.model.Sign;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

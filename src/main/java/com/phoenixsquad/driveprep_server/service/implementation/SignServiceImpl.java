@@ -1,7 +1,7 @@
 package com.phoenixsquad.driveprep_server.service.implementation;
 
-import com.phoenixsquad.driveprep_server.model.info.Sign;
-import com.phoenixsquad.driveprep_server.repository.info.SignRepository;
+import com.phoenixsquad.driveprep_server.model.Sign;
+import com.phoenixsquad.driveprep_server.repository.SignRepository;
 import com.phoenixsquad.driveprep_server.service.SignService;
 import org.springframework.stereotype.Service;
 

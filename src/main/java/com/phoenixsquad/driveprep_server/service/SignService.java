@@ -1,6 +1,6 @@
 package com.phoenixsquad.driveprep_server.service;
 
-import com.phoenixsquad.driveprep_server.model.info.Sign;
+import com.phoenixsquad.driveprep_server.model.Sign;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
