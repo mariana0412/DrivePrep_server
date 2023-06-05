@@ -74,16 +74,6 @@ CREATE TABLE Info_theme (
   FOREIGN KEY(parent_theme_id) REFERENCES Info_theme (info_theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS Rule;
-CREATE TABLE Rule (
-  rule_id VARCHAR(20) NOT NULL,
-  info_theme_id INT NOT NULL,
-  rule_text VARCHAR (800) NOT NULL,
-  rule_picture VARCHAR (160) NULL,
-  PRIMARY KEY(rule_id),
-  FOREIGN KEY(info_theme_id) REFERENCES Info_theme (info_theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
-);
-
 DROP TABLE IF EXISTS Sign;
 CREATE TABLE Sign (
   sign_id VARCHAR(20) NOT NULL,
@@ -92,16 +82,5 @@ CREATE TABLE Sign (
   sign_text VARCHAR (800) NOT NULL,
   sign_picture VARCHAR (160) NOT NULL,
   PRIMARY KEY(sign_id),
-  FOREIGN KEY(info_theme_id) REFERENCES Info_theme (info_theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
-);
-
-DROP TABLE IF EXISTS Law;
-CREATE TABLE Law (
-  law_id SERIAL NOT NULL,
-  info_theme_id INT NOT NULL,
-  law_name VARCHAR (360) NOT NULL,
-  law_text VARCHAR (1300) NULL,
-  law_url VARCHAR (160) NOT NULL,
-  PRIMARY KEY(law_id),
   FOREIGN KEY(info_theme_id) REFERENCES Info_theme (info_theme_id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
