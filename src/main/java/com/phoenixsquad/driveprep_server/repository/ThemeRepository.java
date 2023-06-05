@@ -11,6 +11,7 @@ import java.util.List;
 public interface ThemeRepository extends CrudRepository<Theme, Integer> {
 
     @Query("SELECT t FROM Theme t " +
-            "WHERE t.categoryId = ?1 OR t.categoryId = 0")
+            "WHERE t.categoryId = ?1 OR t.categoryId = 0 " +
+            "ORDER BY t.id")
     List<Theme> getThemesByCategoryId(Integer categoryId);
 }
