@@ -15,7 +15,7 @@ public interface QuestionRepository extends CrudRepository<Question, Integer> {
             "JOIN Theme t ON q.themeId = t.id " +
             "JOIN Category c ON t.categoryId = c.id " +
             "WHERE c.id = ?1 OR c.id = 0 " +
-            "ORDER BY RANDOM()")
+            "ORDER BY q.id")
     List<Question> getQuestionsByCategory(Integer categoryId);
 
     @Query("SELECT q FROM Question q " +
@@ -23,7 +23,7 @@ public interface QuestionRepository extends CrudRepository<Question, Integer> {
             "JOIN Category c ON t.categoryId = c.id " +
             "WHERE c.id = ?1 OR c.id = 0 " +
             "AND q.complexity BETWEEN ?2 AND ?3 " +
-            "ORDER BY RANDOM()")
+            "ORDER BY q.id")
     List<Question> getQuestionsByCategoryAndComplexity(Integer categoryId, Integer minComplexity, Integer maxComplexity);
 
     @Query("SELECT q FROM Question q " +
@@ -31,7 +31,7 @@ public interface QuestionRepository extends CrudRepository<Question, Integer> {
             "JOIN Category c ON t.categoryId = c.id " +
             "WHERE c.id = ?1 OR c.id = 0 " +
             "AND q.dateAdded >= ?2 " +
-            "ORDER BY RANDOM()")
+            "ORDER BY q.id")
     List<Question> getQuestionsByCategoryAndDateAdded(Integer categoryId, Date dateAdded);
 
     @Query("SELECT q FROM Question q " +
@@ -40,7 +40,7 @@ public interface QuestionRepository extends CrudRepository<Question, Integer> {
             "WHERE c.id = ?1 OR c.id = 0 " +
             "AND q.complexity BETWEEN ?2 AND ?3 " +
             "AND q.dateAdded >= ?4 " +
-            "ORDER BY RANDOM()")
+            "ORDER BY q.id")
     List<Question> getQuestionsByCategoryAndComplexityAndDateAdded(Integer categoryId, Integer minComplexity,
                                                                    Integer maxComplexity, Date dateAdded);
 

@@ -1,8 +1,10 @@
 package com.phoenixsquad.driveprep_server.service.implementation;
 
 import com.phoenixsquad.driveprep_server.dto.UserDTO;
-import com.phoenixsquad.driveprep_server.exceptions.InvalidPasswordException;
+import com.phoenixsquad.driveprep_server.exceptions.EmailInUseException;
+import com.phoenixsquad.driveprep_server.exceptions.InvalidOldPasswordException;
 import com.phoenixsquad.driveprep_server.exceptions.UserNotFoundException;
+import com.phoenixsquad.driveprep_server.exceptions.WrongPasswordFormat;
 import com.phoenixsquad.driveprep_server.model.User;
 import com.phoenixsquad.driveprep_server.repository.UserRepository;
 import com.phoenixsquad.driveprep_server.service.UserService;
@@ -40,9 +42,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(UserDTO userDTO) {
-        Optional<User> userOptional = userRepository.findById(userDTO.getId());
+        String userId = userDTO.getId();
+        String userEmail = userDTO.getEmail();
+
+        Optional<User> userOptional = userRepository.findById(userId);
         if(userOptional.isEmpty())
             throw new UserNotFoundException("User not found");
+
+        checkEmailUniqueness(userEmail, userId);
 
         User user = userOptional.get();
         user.setName(userDTO.getName());
@@ -54,6 +61,15 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    private void checkEmailUniqueness(String userEmail, String userId) {
+        Optional<User> userOptional = userRepository.findByEmail(userEmail);
+        if(userOptional.isPresent()) {
+            String emailOwnerId = userOptional.get().getId();
+            if (!emailOwnerId.equals(userId))
+                throw new EmailInUseException("This email is already in use");
+        }
+    }
+
     @Override
     public void deleteUser(String id) {
         userRepository.deleteById(id);
@@ -63,12 +79,18 @@ public class UserServiceImpl implements UserService {
     public void changePassword(String id, String oldPassword, String newPassword) {
         User user = getUserById(id);
         checkOldPassword(oldPassword, user.getPassword());
+        checkNewPasswordFormat(newPassword);
         setNewPassword(user, newPassword);
     }
 
     private void checkOldPassword(String oldPassword, String passwordInDb) {
         if (!passwordEncoder.matches(oldPassword, passwordInDb))
-            throw new InvalidPasswordException("Invalid old password");
+            throw new InvalidOldPasswordException("Invalid old password");
+    }
+
+    private void checkNewPasswordFormat(String password) {
+        if(password.length() < 8)
+            throw new WrongPasswordFormat("Password length is less than 8 symbols.");
     }
 
     private void setNewPassword(User user, String newPassword) {
