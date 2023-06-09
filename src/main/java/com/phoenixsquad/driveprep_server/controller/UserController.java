@@ -1,9 +1,11 @@
 package com.phoenixsquad.driveprep_server.controller;
 
-import com.phoenixsquad.driveprep_server.exceptions.InvalidPasswordException;
+import com.phoenixsquad.driveprep_server.exceptions.EmailInUseException;
+import com.phoenixsquad.driveprep_server.exceptions.InvalidOldPasswordException;
 import com.phoenixsquad.driveprep_server.exceptions.UserNotFoundException;
 import com.phoenixsquad.driveprep_server.dto.ChangePasswordDTO;
 import com.phoenixsquad.driveprep_server.dto.UserDTO;
+import com.phoenixsquad.driveprep_server.exceptions.WrongPasswordFormat;
 import com.phoenixsquad.driveprep_server.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,10 +34,14 @@ public class UserController {
     public ResponseEntity<String> updateUserData(@RequestBody UserDTO user) {
         try {
             userService.saveUser(user);
-            return ResponseEntity.ok("User date updated successfully");
+            return ResponseEntity.ok("Інформація про користувача змінена успішно.");
+        } catch (EmailInUseException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Ця електронна пошта вже використовується.");
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("Failed to update user data");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Не вдалося змінити інформацію про користувача.");
         }
     }
 
@@ -43,10 +49,10 @@ public class UserController {
     public ResponseEntity<String> deleteUserById(@PathVariable("id") String id) {
         try {
             userService.deleteUser(id);
-            return ResponseEntity.ok("User deleted successfully");
+            return ResponseEntity.ok("Користувач був видалений успішно.");
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("Failed to delete user");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Не вдалося видалити користувача");
         }
     }
 
@@ -54,14 +60,23 @@ public class UserController {
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDTO request) {
         try {
             userService.changePassword(request.getId(), request.getOldPassword(), request.getNewPassword());
-            return ResponseEntity.ok("Password changed successfully");
+            return ResponseEntity.ok("Пароль був змінений успішно!");
         } catch (UserNotFoundException e) {
+            e.printStackTrace();
             return ResponseEntity.notFound().build();
-        } catch (InvalidPasswordException e) {
-            return ResponseEntity.badRequest().body("Invalid old password");
+        } catch (InvalidOldPasswordException e) {
+            e.printStackTrace();
+            String errorCode = e.getErrorCode();
+            String errorMessage = e.getMessage();
+            return ResponseEntity.badRequest().body(errorCode + ": " + errorMessage);
+        } catch(WrongPasswordFormat e) {
+            e.printStackTrace();
+            String errorCode = e.getErrorCode();
+            String errorMessage = e.getMessage();
+            return ResponseEntity.badRequest().body(errorCode + ": " + errorMessage);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to change password");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Не вдалося змінити пароль.");
         }
     }
 }
