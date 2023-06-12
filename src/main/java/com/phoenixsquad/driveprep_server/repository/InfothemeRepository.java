@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository interface for managing Infotheme entities. Provides CRUD-operations and getting Infothemes about Signs
+ */
 @Repository
 public interface InfothemeRepository extends CrudRepository<Infotheme, Long> {
     

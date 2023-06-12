@@ -17,6 +17,13 @@ public class SolvedQuestionController {
         this.solvedQuestionService = solvedQuestionService;
     }
 
+    /**
+     * Saves a solved question.
+     *
+     * @param solvedQuestion The solved question to be saved.
+     * @return ResponseEntity with a success message if the solved question is saved successfully, or a bad request
+     *         with an error message if the save operation fails.
+     */
     @PostMapping("/solved-questions")
     public ResponseEntity<String> saveSolvedQuestion(@RequestBody SolvedQuestion solvedQuestion) {
         try {
@@ -28,6 +35,13 @@ public class SolvedQuestionController {
         return ResponseEntity.ok("Solved question saved successfully");
     }
 
+    /**
+     * Updates a solved question.
+     *
+     * @param solvedQuestion The solved question to be updated.
+     * @return ResponseEntity with a success message if the solved question is updated successfully, or a bad request
+     *         with an error message if the update operation fails.
+     */
     @PutMapping("/solved-questions")
     public ResponseEntity<String> updateSolvedQuestion(@RequestBody SolvedQuestion solvedQuestion) {
         try {
@@ -36,6 +50,6 @@ public class SolvedQuestionController {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Failed to update solved question");
         }
-        return ResponseEntity.ok("Solved question update successfully");
+        return ResponseEntity.ok("Solved question updated successfully");
     }
 }

@@ -9,6 +9,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a theme of traffic rules, contains a lot of questions
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

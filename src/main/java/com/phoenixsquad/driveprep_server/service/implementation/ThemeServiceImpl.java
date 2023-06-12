@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of the ThemeService interface.
+ */
 @Service
 public class ThemeServiceImpl implements ThemeService {
 

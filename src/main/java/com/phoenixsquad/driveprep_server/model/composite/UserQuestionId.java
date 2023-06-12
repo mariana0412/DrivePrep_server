@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * Represents an ID which contains both question ID and user ID
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

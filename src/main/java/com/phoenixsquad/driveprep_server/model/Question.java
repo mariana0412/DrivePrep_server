@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * Represents a question related to studying traffic rules
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

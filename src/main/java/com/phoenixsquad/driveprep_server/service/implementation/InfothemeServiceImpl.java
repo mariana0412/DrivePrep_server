@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of the InfothemeService interface.
+ */
 @Service
 public class InfothemeServiceImpl implements InfothemeService {
 

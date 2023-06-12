@@ -10,6 +10,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a Question which was solved by User
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

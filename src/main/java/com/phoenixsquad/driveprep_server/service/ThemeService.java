@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service interface for managing Themes.
+ */
 @Service
 public interface ThemeService {
     List<Theme> getThemesByCategory(Integer categoryId);

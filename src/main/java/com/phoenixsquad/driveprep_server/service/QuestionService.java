@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Service interface for managing Questions.
+ */
 @Service
 public interface QuestionService {
     List<Question> getQuestions(Integer categoryId, Integer complexityLevel, Integer themeId, Date dateAdded);

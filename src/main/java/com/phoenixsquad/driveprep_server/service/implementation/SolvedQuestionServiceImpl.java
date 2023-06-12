@@ -6,6 +6,9 @@ import com.phoenixsquad.driveprep_server.repository.SolvedQuestionRepository;
 import com.phoenixsquad.driveprep_server.service.SolvedQuestionService;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of the SolvedQuestionService interface.
+ */
 @Service
 public class SolvedQuestionServiceImpl implements SolvedQuestionService {
 

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service interface for managing categories.
+ */
 @Service
 public interface CategoryService {
     List<Category> getAllCategories();

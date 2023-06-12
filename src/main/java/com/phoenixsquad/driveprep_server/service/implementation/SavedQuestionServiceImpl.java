@@ -6,6 +6,9 @@ import com.phoenixsquad.driveprep_server.repository.SavedQuestionRepository;
 import com.phoenixsquad.driveprep_server.service.SavedQuestionService;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of the SavedQuestionService interface.
+ */
 @Service
 public class SavedQuestionServiceImpl implements SavedQuestionService {
     private final SavedQuestionRepository savedQuestionRepository;
