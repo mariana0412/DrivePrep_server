@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a Question which was saved by User
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository interface for managing Theme entities. Provides CRUD-operations and getting themes by Category ID
+ */
 @Repository
 public interface ThemeRepository extends CrudRepository<Theme, Integer> {
 

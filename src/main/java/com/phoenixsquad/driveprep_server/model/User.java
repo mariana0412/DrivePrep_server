@@ -15,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Represents an authenticated User
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

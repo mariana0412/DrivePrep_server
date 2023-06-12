@@ -19,6 +19,9 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Service class for handling user authentication and registration.
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {

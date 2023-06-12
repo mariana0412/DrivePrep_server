@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO class for representing password change information.
+ */
 @Data
 @Builder
 @AllArgsConstructor

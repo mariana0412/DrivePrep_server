@@ -19,13 +19,19 @@ public class ThemeController {
         this.themeService = themeService;
     }
 
+    /**
+     * Retrieves the themes associated with a specific category.
+     *
+     * @param categoryId The ID of the category.
+     * @return ResponseEntity containing the list of themes if found, or NO_CONTENT if no themes are available
+     *         for the specified category.
+     */
     @GetMapping(path = "/themes")
     public ResponseEntity<List<Theme>> listThemes(@RequestParam Integer categoryId) {
         List<Theme> themes = themeService.getThemesByCategory(categoryId);
-        if(themes.isEmpty())
+        if (themes.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<>(themes, HttpStatus.OK);
     }
-
 }

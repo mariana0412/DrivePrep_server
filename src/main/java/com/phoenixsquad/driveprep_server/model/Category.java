@@ -9,6 +9,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a driver license category
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

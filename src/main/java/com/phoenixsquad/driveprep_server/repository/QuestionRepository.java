@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Repository interface for managing Question entities. Provides CRUD-operations and contains custom queries
+ */
 @Repository
 public interface QuestionRepository extends CrudRepository<Question, Integer> {
 

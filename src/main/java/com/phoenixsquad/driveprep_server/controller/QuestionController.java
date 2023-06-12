@@ -14,18 +14,30 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Controller class for handling question-related requests.
+ */
 @RestController
 public class QuestionController {
 
     private final QuestionService questionService;
     private final QuestionDTOService questionDTOService;
 
-
     public QuestionController(QuestionService questionService, QuestionDTOService questionDTOService) {
         this.questionService = questionService;
         this.questionDTOService = questionDTOService;
     }
 
+    /**
+     * Retrieves a list of questions based on the provided filters.
+     *
+     * @param categoryId       The ID of the category to filter by.
+     * @param complexityLevel  The complexity level to filter by.
+     * @param themeId          The ID of the theme to filter by.
+     * @param dateAdded        The date added to filter by.
+     * @param userId           The ID of the user (optional) to filter by.
+     * @return ResponseEntity containing the list of questions or NO_CONTENT status if no questions are found.
+     */
     @GetMapping(path = "/questions")
     public ResponseEntity<List<?>> listQuestions(
             @RequestParam(required = false) Integer categoryId,
@@ -44,13 +56,20 @@ public class QuestionController {
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
+    /**
+     * Retrieves a list of exam questions based on the provided category and complexity level.
+     *
+     * @param categoryId      The ID of the category.
+     * @param complexityLevel The complexity level (optional) to filter by.
+     * @return ResponseEntity containing the list of exam questions or NO_CONTENT status if no questions are found.
+     */
     @GetMapping(path = "/exam-questions")
-    public ResponseEntity<List<Question>> listQuestions(
+    public ResponseEntity<List<Question>> listExamQuestions(
             @RequestParam Integer categoryId,
             @RequestParam(required = false) Integer complexityLevel
     ) {
         List<Question> examQuestions;
-        if(complexityLevel != null)
+        if (complexityLevel != null)
             examQuestions = questionService.getExamQuestionsByCategoryAndComplexity(categoryId, complexityLevel);
         else
             examQuestions = questionService.getExamQuestionsByCategory(categoryId);
@@ -61,22 +80,33 @@ public class QuestionController {
         return new ResponseEntity<>(examQuestions, HttpStatus.OK);
     }
 
+    /**
+     * Retrieves a list of saved questions for the specified user.
+     *
+     * @param userId The ID of the user.
+     * @return ResponseEntity containing the list of saved questions or NO_CONTENT status if no questions are found.
+     */
     @GetMapping(path = "/saved-questions")
     public ResponseEntity<List<QuestionDTO>> listSavedQuestions(@RequestParam String userId) {
         List<QuestionDTO> questionDTOs = questionDTOService.getSavedQuestionsByUserId(userId);
-        if(questionDTOs.isEmpty())
+        if (questionDTOs.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<>(questionDTOs, HttpStatus.OK);
     }
 
+    /**
+     * Retrieves a list of incorrectly solved questions for the specified user.
+     *
+     * @param userId The ID of the user.
+     * @return ResponseEntity containing the list of incorrectly solved questions or NO_CONTENT status if no questions are found.
+     */
     @GetMapping(path = "/wrong-questions")
     public ResponseEntity<List<QuestionDTO>> listWrongQuestions(@RequestParam String userId) {
         List<QuestionDTO> questionDTOs = questionDTOService.getIncorrectlySolvedQuestionsByUserId(userId);
-        if(questionDTOs.isEmpty())
+        if (questionDTOs.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<>(questionDTOs, HttpStatus.OK);
     }
-
 }

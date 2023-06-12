@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * Represents a Data Transfer Object (DTO) for a question (question with two additional fields - solved and saved)
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

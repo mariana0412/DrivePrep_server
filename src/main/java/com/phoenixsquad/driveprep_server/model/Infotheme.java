@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents theme of our infomaterials (signs etc)
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

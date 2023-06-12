@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Implementation of the QuestionDTOService interface.
+ */
 @Service
 public class QuestionDTOServiceImpl implements QuestionDTOService {
 

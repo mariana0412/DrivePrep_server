@@ -15,24 +15,54 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Service class for JWT operations.
+ */
 @Service
 public class JwtService {
     private static final String SECRET_KEY = "6251655368566D597133743677397A24432646294A404E635266556A576E5A72";
     private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24;
 
+    /**
+     * Extracts the username from the JWT token.
+     *
+     * @param token The JWT token.
+     * @return The extracted username.
+     */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
+    /**
+     * Extracts a specific claim from the JWT token.
+     *
+     * @param token          The JWT token.
+     * @param claimsResolver The function to extract the claim.
+     * @param <T>            The type of the claim.
+     * @return The extracted claim.
+     */
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
+    /**
+     * Generates a JWT token for the specified user.
+     *
+     * @param user The user object.
+     * @return The generated JWT token.
+     */
     public String generateToken(User user) {
         return generateToken(new HashMap<>(), user);
     }
 
+    /**
+     * Generates a JWT token with extra claims for the specified user.
+     *
+     * @param extraClaims The extra claims to include in the token.
+     * @param user        The user object.
+     * @return The generated JWT token.
+     */
     public String generateToken(
             Map<String, Object> extraClaims,
             User user
@@ -51,6 +81,13 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * Checks if a JWT token is valid for the specified user.
+     *
+     * @param token         The JWT token.
+     * @param userDetails  The user details.
+     * @return True if the token is valid, false otherwise.
+     */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);

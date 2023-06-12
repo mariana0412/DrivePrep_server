@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Controller class for handling category-related requests.
+ */
 @RestController
 public class CategoryController {
 
@@ -20,15 +23,26 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    /**
+     * Retrieves all categories.
+     *
+     * @return ResponseEntity containing the list of categories or NO_CONTENT status if no categories are found.
+     */
     @GetMapping(path = "/categories")
     public ResponseEntity<List<Category>> listCategories() {
         List<Category> categories = categoryService.getAllCategories();
-        if(categories.isEmpty())
+        if (categories.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
+    /**
+     * Retrieves a category by its ID.
+     *
+     * @param id The ID of the category.
+     * @return ResponseEntity containing the category if found, or NOT_FOUND status if the category is not found.
+     */
     @GetMapping("/categories/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id) {
         try {
